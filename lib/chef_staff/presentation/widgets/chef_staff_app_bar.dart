@@ -1,15 +1,16 @@
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
+import 'package:chef_staff/chef_staff/presentation/widgets/chef_staff_app_action.dart';
+import 'package:chef_staff/chef_staff/presentation/widgets/chef_staff_title.dart';
 import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ChefStaffAppBarBody extends StatelessWidget
     implements PreferredSizeWidget {
   const ChefStaffAppBarBody({super.key, required this.vm});
 
   @override
-  Size get preferredSize => const Size(double.infinity, 190);
+  Size get preferredSize => Size(double.infinity, 225 * AppSizes.hRatio);
 
   final ChefStaffViewModel vm;
 
@@ -25,69 +26,8 @@ class ChefStaffAppBarBody extends StatelessWidget
               vm.model!.profilePhoto,
               fit: BoxFit.cover,
             )),
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 2,
-          children: [
-            Text(
-              vm.model!.fullName,
-              style: TextStyle(
-                color: AppColors.nameColor,
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Text(
-              "@${vm.model!.username}",
-              style: TextStyle(
-                color: AppColors.nameColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 12,
-              ),
-              textAlign: TextAlign.start,
-            ),
-            Text(
-              vm.model!.bio,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w300,
-              ),
-            )
-          ],
-        ),
-        actions: [
-          Row(
-            spacing: 5,
-            children: [
-              Container(
-                width: 28 * AppSizes.wRatio,
-                height: 28 * AppSizes.hRatio,
-                decoration: BoxDecoration(
-                  color: AppColors.actionContainerColor,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: SvgPicture.asset('assets/icons/plus.svg'),
-                ),
-              ),
-              Container(
-                width: 28 * AppSizes.wRatio,
-                height: 28 * AppSizes.hRatio,
-                decoration: BoxDecoration(
-                  color: AppColors.actionContainerColor,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: SvgPicture.asset('assets/icons/categories.svg'),
-                ),
-              )
-            ],
-          )
-        ],
+        title: ChefStaffTitle(vm: vm),
+        actions: [ChefStaffAppAction()],
         bottom: PreferredSize(
           preferredSize: Size(double.infinity, 10),
           child: Align(
@@ -95,7 +35,7 @@ class ChefStaffAppBarBody extends StatelessWidget
             child: Padding(
               padding: const EdgeInsets.only(left: 37, right: 37),
               child: Column(
-                spacing: 5,
+                spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -106,12 +46,30 @@ class ChefStaffAppBarBody extends StatelessWidget
                       ShareContainer(text: "Share Profile"),
                     ],
                   ),
-                  FollowingFollowers(),
-
-                  // TabBar(tabs: [
-                  //   Text("!"),
-                  //
-                  // ])
+                  FollowingFollowers(
+                    vm: vm,
+                  ),
+                  TabBar(
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      indicatorColor: AppColors.nameColor,
+                      tabs: [
+                        Text(
+                          "Recipes",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Text(
+                          "Favorites",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ])
                 ],
               ),
             ),
@@ -156,7 +114,12 @@ class ShareContainer extends StatelessWidget {
 }
 
 class FollowingFollowers extends StatelessWidget {
-  const FollowingFollowers({super.key});
+  const FollowingFollowers({
+    super.key,
+    required this.vm,
+  });
+
+  final ChefStaffViewModel vm;
 
   @override
   Widget build(BuildContext context) {
@@ -169,6 +132,67 @@ class FollowingFollowers extends StatelessWidget {
           color: AppColors.actionContainerColor,
         ),
         borderRadius: BorderRadius.circular(14),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ColumnText(count: vm.model!.recipes, text: "recipes"),
+          LineContainer(),
+          ColumnText(count: vm.model!.following, text: "Following"),
+          LineContainer(),
+          ColumnText(count: vm.model!.followers, text: "Followers"),
+        ],
+      ),
+    );
+  }
+}
+
+class ColumnText extends StatelessWidget {
+  const ColumnText({
+    super.key,
+    required this.count,
+    required this.text,
+  });
+
+  final int count;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 0.5,
+      children: [
+        Text(
+          "$count",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+          ),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class LineContainer extends StatelessWidget {
+  const LineContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 2,
+      height: 20,
+      decoration: BoxDecoration(
+        color: AppColors.actionContainerColor,
       ),
     );
   }

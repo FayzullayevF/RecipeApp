@@ -1,4 +1,5 @@
 import 'package:chef_staff/chef_staff/data/models/chef_stuff_model.dart';
+import 'package:chef_staff/chef_staff/data/models/recipe_model.dart';
 import 'package:chef_staff/chef_staff/data/repositories/chef_staff_repository.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -8,6 +9,7 @@ class ChefStaffViewModel extends ChangeNotifier {
   }
 
   ChefStuffModel? model;
+  late List<RecipeModel> recipeModel;
   final ChefStaffRepository _repo;
   bool loading = true;
 
@@ -15,10 +17,12 @@ class ChefStaffViewModel extends ChangeNotifier {
     loading = true;
     notifyListeners();
     model = await _repo.fetchUser();
+    recipeModel = await _repo.fetchRecipe();
     loading = false;
     notifyListeners();
   }
 }
+
 
 
 

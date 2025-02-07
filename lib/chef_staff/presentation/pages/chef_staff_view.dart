@@ -6,6 +6,8 @@ import 'package:chef_staff/client.dart';
 import 'package:chef_staff/core/utils.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/presentations/bottom_navigation_bar.dart';
+
 class ChefStaffView extends StatelessWidget {
   const ChefStaffView({super.key, required this.vm});
 
@@ -38,7 +40,15 @@ class ProfileScaffold extends StatelessWidget {
         extendBody: true,
         backgroundColor: AppColors.mainBackgroundColor,
         appBar: ChefStaffAppBarBody(vm: vm),
-        body: ProfileScaffoldTabBar(vm: ChefStaffViewModel(repo: ChefStaffRepository(client: ApiClient())),),
+        body: ProfileScaffoldTabBar(
+          vm: ChefStaffViewModel(
+              repo: ChefStaffRepository(client: ApiClient())),
+        ),
+        bottomNavigationBar:
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50,left: 36,right: 36),
+              child: BottomNavBarItem(),
+            ),
       ),
     );
   }

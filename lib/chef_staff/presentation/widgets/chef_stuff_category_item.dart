@@ -1,4 +1,5 @@
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
+import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,7 +15,7 @@ class ChefStuffCategoryItem extends StatelessWidget {
   });
 
   final String title, desc, image;
-  final int rating, time;
+  final num rating, time;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,8 @@ class ChefStuffCategoryItem extends StatelessWidget {
         Stack(
           children: [
             Container(
-                width: 159.5,
-                height: 76,
+                width: 159.5 * AppSizes.wRatio,
+                height: 76 * AppSizes.hRatio,
                 decoration: BoxDecoration(
                   color: AppColors.whiteBeige,
                   borderRadius: BorderRadius.only(
@@ -63,7 +64,9 @@ class ChefStuffCategoryItem extends StatelessWidget {
                           width: 2,
                         ),
                         SvgPicture.asset('assets/icons/star.svg'),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         SvgPicture.asset('assets/icons/clock.svg'),
                         Text(
                           "$time min",
@@ -73,9 +76,25 @@ class ChefStuffCategoryItem extends StatelessWidget {
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 )),
+            Image.network(
+              image,
+              fit: BoxFit.cover,
+            ),
+            Container(
+              width: 28 * AppSizes.wRatio,
+              height: 28 * AppSizes.hRatio,
+              decoration: BoxDecoration(
+                color: AppColors.nameColor,
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                child: SvgPicture.asset('assets/icons/heart.svg'),
+              ),
+            )
           ],
         )
       ],

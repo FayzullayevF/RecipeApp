@@ -18,14 +18,17 @@ class ChefStaffAppBarBody extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
         backgroundColor: AppColors.mainBackgroundColor,
-        leadingWidth: 102 * AppSizes.wRatio,
+        leadingWidth: 130 * AppSizes.wRatio,
         toolbarHeight: 102 * AppSizes.hRatio,
-        leading: ClipRRect(
-            borderRadius: BorderRadius.circular(51),
-            child: Image.network(
-              vm.model!.profilePhoto,
-              fit: BoxFit.cover,
-            )),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 36),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(51),
+              child: Image.network(
+                vm.model!.profilePhoto,
+                fit: BoxFit.cover,
+              )),
+        ),
         title: ChefStaffTitle(vm: vm),
         actions: [ChefStaffAppAction()],
         bottom: PreferredSize(

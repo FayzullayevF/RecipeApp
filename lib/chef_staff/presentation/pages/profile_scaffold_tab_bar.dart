@@ -6,10 +6,7 @@ import 'package:flutter/material.dart';
 import '../widgets/chef_staff_body.dart';
 
 class ProfileScaffoldTabBar extends StatelessWidget {
-  const ProfileScaffoldTabBar({
-    super.key,
-    required this.vm
-  });
+  const ProfileScaffoldTabBar({super.key, required this.vm});
 
   final ChefStaffViewModel vm;
 
@@ -17,10 +14,22 @@ class ProfileScaffoldTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBarView(children: [
       Center(
-        child: ChefStaffBody(vm: ChefStaffViewModel(repo: ChefStaffRepository(client: ApiClient())))
+        child: ChefStaffBody(
+          vm: ChefStaffViewModel(
+            repo: ChefStaffRepository(
+              client: ApiClient(),
+            ),
+          ),
+        ),
       ),
       Center(
-        child: Text("2", style: TextStyle(color: Colors.white)),
+        child:  ChefStaffBody(
+          vm: ChefStaffViewModel(
+            repo: ChefStaffRepository(
+              client: ApiClient(),
+            ),
+          ),
+        ),
       )
     ]);
   }

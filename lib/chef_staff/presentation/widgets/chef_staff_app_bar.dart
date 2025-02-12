@@ -72,7 +72,8 @@ class ChefStaffAppBarBody extends StatelessWidget
                             fontSize: 12,
                           ),
                         ),
-                      ])
+                      ]),
+                  SizedBox(height: 10,)
                 ],
               ),
             ),

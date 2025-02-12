@@ -17,16 +17,16 @@ class ChefStaffBody extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 17.5,
-        mainAxisSpacing: 30,
+        mainAxisSpacing: 40,
       ),
-      itemCount: vm.recipeModel.length,
+      itemCount: vm.recipeModel!.length,
       itemBuilder: (context, index) {
         return ChefStuffCategoryItem(
-          image: vm.recipeModel[index].photo,
-          title: vm.recipeModel[index].title,
-          desc: vm.recipeModel[index].description,
-          rating: vm.recipeModel[index].rating,
-          time: vm.recipeModel[index].timeRequired,
+          image: vm.recipeModel![index].photo,
+          title: vm.recipeModel![index].title,
+          desc: vm.recipeModel![index].description,
+          rating: vm.recipeModel![index].rating,
+          time: vm.recipeModel![index].timeRequired,
         );
       },
     );

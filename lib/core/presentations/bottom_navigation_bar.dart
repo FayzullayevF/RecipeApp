@@ -18,7 +18,7 @@ class BottomNavBarItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SvgPicture.asset('assets/icons/home.svg'),
+          IconButton(onPressed: (){},icon: SvgPicture.asset('assets/icons/home.svg')),
           SvgPicture.asset('assets/icons/community.svg'),
           SvgPicture.asset('assets/icons/category_item.svg'),
           SvgPicture.asset('assets/icons/profile.svg'),

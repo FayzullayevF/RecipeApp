@@ -22,77 +22,105 @@ class ChefStuffCategoryItem extends StatelessWidget {
     return Column(
       children: [
         Stack(
+          clipBehavior: Clip.none,
           children: [
-            Container(
-                width: 159.5 * AppSizes.wRatio,
-                height: 76 * AppSizes.hRatio,
-                decoration: BoxDecoration(
-                  color: AppColors.whiteBeige,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(14),
-                    bottomRight: Radius.circular(14),
+            Positioned(
+              bottom: -73,
+              right: 2,
+              left: 2,
+              child: Container(
+                  width: 159.5 * AppSizes.wRatio,
+                  height: 83 * AppSizes.hRatio,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(14),
+                      bottomRight: Radius.circular(14),
+                    ),
                   ),
-                ),
-                child: Column(
-                  spacing: 2,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 1,),
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          color: Color(0xFF3E2823),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.none,
+                        ),
                       ),
-                    ),
-                    Text(
-                      desc,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w300,
+                      Text(
+                        desc,
+                        style: const TextStyle(
+                            color: Color(0xFF3E2823),
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            decoration: TextDecoration.none),
+                        maxLines: 2,
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          rating.toString(),
-                          style: TextStyle(
-                            color: AppColors.pinkSubColor,
-                            fontSize: 12,
-                          ),
+                      SizedBox(height: 4,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 7),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              spacing: 5,
+                              children: [
+                                Text(
+                                  rating.toString(),
+                                  style: TextStyle(
+                                      color: Color(0xFFEC888D),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.none),
+                                ),
+                                SvgPicture.asset("assets/icons/star.svg"),
+                              ],
+                            ),
+                            Row(
+                              spacing: 5,
+                              children: [
+                                SvgPicture.asset('assets/icons/clock.svg'),
+                                Text(
+                                  "${time.toString()} min",
+                                  style: TextStyle(
+                                    color: Color(0xFFEC888D),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    decoration: TextDecoration.none,
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        SvgPicture.asset('assets/icons/star.svg'),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        SvgPicture.asset('assets/icons/clock.svg'),
-                        Text(
-                          "$time min",
-                          style: TextStyle(
-                            color: AppColors.pinkSubColor,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )),
-            Image.network(
-              image,
-              fit: BoxFit.cover,
+                      ),
+                    ],
+                  )),
             ),
-            Container(
-              width: 28 * AppSizes.wRatio,
-              height: 28 * AppSizes.hRatio,
-              decoration: BoxDecoration(
-                color: AppColors.nameColor,
-                borderRadius: BorderRadius.circular(14),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: Image.network(
+                image,
+                fit: BoxFit.cover,
+                height: 153 * AppSizes.hRatio,
+                width: 169 * AppSizes.wRatio,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2),
-                child: SvgPicture.asset('assets/icons/heart.svg'),
+            ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: Container(
+                width: 28 * AppSizes.wRatio,
+                height: 28 * AppSizes.hRatio,
+                decoration: BoxDecoration(
+                  color: AppColors.nameColor,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Center(child: SvgPicture.asset('assets/icons/heart.svg')),
               ),
             )
           ],

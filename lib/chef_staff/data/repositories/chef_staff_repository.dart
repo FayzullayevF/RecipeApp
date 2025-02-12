@@ -16,7 +16,6 @@ class ChefStaffRepository{
      return model!;
    }
   List<RecipeModel> recipeModel = [];
-
   Future<List<RecipeModel>> fetchRecipe() async {
     if (recipeModel.isNotEmpty) return recipeModel;
     final rawRecipe = await client.fetchRecipes();

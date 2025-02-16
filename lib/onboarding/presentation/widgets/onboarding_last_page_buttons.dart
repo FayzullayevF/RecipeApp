@@ -1,4 +1,4 @@
-import 'package:chef_staff/core/utils.dart';
+import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingLastPageButtons extends StatelessWidget {

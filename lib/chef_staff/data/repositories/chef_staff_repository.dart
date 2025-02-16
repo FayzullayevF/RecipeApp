@@ -1,6 +1,6 @@
 import 'package:chef_staff/chef_staff/data/models/chef_stuff_model.dart';
 import 'package:chef_staff/chef_staff/data/models/recipe_model.dart';
-import 'package:chef_staff/client.dart';
+import 'package:chef_staff/core/client.dart';
 
 class ChefStaffRepository{
   ChefStaffRepository({

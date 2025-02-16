@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://10.10.2.212:8888/api/v1"));
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.0.106:8888/api/v1"));
 
   Future<Map<String, dynamic>> fetchUser() async {
     var response = await dio.get("/auth/details/1");
@@ -12,23 +12,48 @@ class ApiClient {
       throw Exception("Failed to load user");
     }
   }
+
   Future<List<Map<String, dynamic>>> fetchRecipes() async {
     var responseRecipe = await dio.get("/recipes/list");
     if (responseRecipe.statusCode == 200) {
-      List<Map<String, dynamic>> dataRecipe = List<Map<String, dynamic>>.from(responseRecipe.data);
+      List<Map<String, dynamic>> dataRecipe =
+          List<Map<String, dynamic>>.from(responseRecipe.data);
       return dataRecipe;
     } else {
       throw Exception("Failed to load recipes list");
     }
   }
 
-  Future <List<dynamic>> fetchOnboardingPages() async {
+  Future<List<dynamic>> fetchOnboardingPages() async {
     var responseOnboarding = await dio.get("/onboarding/list");
-    if(responseOnboarding.statusCode == 200){
+    if (responseOnboarding.statusCode == 200) {
       List<dynamic> data = responseOnboarding.data;
       return data;
-    }else{
+    } else {
       throw Exception("Failed to load onboarding pages");
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> fetchCategories() async {
+    var responseCategories = await dio.get('/categories/list');
+    if (responseCategories.statusCode == 200) {
+      List<dynamic> data = responseCategories.data;
+      return data.map((e) => e as Map<String, dynamic>).toList();
+    } else {
+      throw Exception("Failed to load categories page");
+    }
+  }
+
+  Future<String> login(String login, String password) async {
+    var response = await dio.post(
+      '/auth/login',
+      data: {'login': login, "password": password},
+    );
+    if(response.statusCode == 200){
+      Map<String,String> data = Map<String,String>.from(response.data);
+      return data['accessToken']!;
+    }else{
+      throw Exception("User not found");
     }
   }
 }

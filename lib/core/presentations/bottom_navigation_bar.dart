@@ -1,5 +1,5 @@
 import 'package:chef_staff/core/sizes.dart';
-import 'package:chef_staff/core/utils.dart';
+import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,7 +18,6 @@ class BottomNavBarItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          IconButton(onPressed: (){},icon: SvgPicture.asset('assets/icons/home.svg')),
           SvgPicture.asset('assets/icons/community.svg'),
           SvgPicture.asset('assets/icons/category_item.svg'),
           SvgPicture.asset('assets/icons/profile.svg'),

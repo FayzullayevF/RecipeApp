@@ -1,6 +1,6 @@
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
 import 'package:chef_staff/core/sizes.dart';
-import 'package:chef_staff/core/utils.dart';
+import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

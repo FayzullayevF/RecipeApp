@@ -1,5 +1,5 @@
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
-import 'package:chef_staff/core/utils.dart';
+import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class ChefStaffTitle extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
 import 'package:chef_staff/chef_staff/presentation/pages/profile_scaffold_tab_bar.dart';
 import 'package:chef_staff/chef_staff/presentation/widgets/chef_staff_app_bar.dart';
-import 'package:chef_staff/core/utils.dart';
+import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../../../core/presentations/bottom_navigation_bar.dart';
 

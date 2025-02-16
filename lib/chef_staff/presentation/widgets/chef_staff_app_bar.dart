@@ -2,7 +2,7 @@ import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.d
 import 'package:chef_staff/chef_staff/presentation/widgets/chef_staff_app_action.dart';
 import 'package:chef_staff/chef_staff/presentation/widgets/chef_staff_title.dart';
 import 'package:chef_staff/core/sizes.dart';
-import 'package:chef_staff/core/utils.dart';
+import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class ChefStaffAppBarBody extends StatelessWidget

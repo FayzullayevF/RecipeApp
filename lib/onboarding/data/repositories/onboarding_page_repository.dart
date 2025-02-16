@@ -1,4 +1,4 @@
-import 'package:chef_staff/client.dart';
+import 'package:chef_staff/core/client.dart';
 import 'package:chef_staff/onboarding/data/models/onboarding_page_model.dart';
 
 class OnboardingRepository {

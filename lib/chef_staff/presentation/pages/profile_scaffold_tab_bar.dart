@@ -1,6 +1,6 @@
 import 'package:chef_staff/chef_staff/data/repositories/chef_staff_repository.dart';
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
-import 'package:chef_staff/client.dart';
+import 'package:chef_staff/core/client.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/chef_staff_body.dart';

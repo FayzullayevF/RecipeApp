@@ -99,17 +99,3 @@ class OnboardingView extends StatelessWidget {
   }
 }
 
-// Container(
-//   width: double.infinity,
-//   height: 128,
-//   decoration: BoxDecoration(
-//     gradient: LinearGradient(
-//       colors: [
-//         AppColors.mainBackgroundColor,
-//         Colors.transparent,
-//       ],
-//       begin: Alignment.bottomCenter,
-//       end: Alignment.topCenter,
-//     ),
-//   ),
-// ),

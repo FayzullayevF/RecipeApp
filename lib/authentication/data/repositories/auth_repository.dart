@@ -5,12 +5,11 @@ class AuthRepository{
   AuthRepository({required this.client});
   final ApiClient client;
 
-  Future<bool> login(String login, String password)async{
+  Future<void> login(String login, String password)async{
     var token = await client.login(login, password);
     await SecureStorage.deleteToken();
-    await SecureStorage.deleteToken();
+    await SecureStorage.deleteCredentials();
     await SecureStorage.saveToken(token);
-    await SecureStorage.saveCredentials(login, password);
-    return true;
+    await SecureStorage.saveCredentials(login: login, password: password);
   }
 }

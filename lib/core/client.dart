@@ -1,7 +1,8 @@
+import 'package:chef_staff/core/exceptions/auth_exceptions.dart';
 import 'package:dio/dio.dart';
 
 class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.0.106:8888/api/v1"));
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.100.44:8888/api/v1", validateStatus: (status) => true));
 
   Future<Map<String, dynamic>> fetchUser() async {
     var response = await dio.get("/auth/details/1");
@@ -53,7 +54,7 @@ class ApiClient {
       Map<String,String> data = Map<String,String>.from(response.data);
       return data['accessToken']!;
     }else{
-      throw Exception("User not found");
+      throw AuthException(message: "User not found");
     }
   }
 }

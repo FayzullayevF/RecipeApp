@@ -1,7 +1,9 @@
-import 'package:chef_staff/categories/data/repositories/categories_repository.dart';
-import 'package:chef_staff/categories/presentation/manager/categories_view_model.dart';
-import 'package:chef_staff/categories/presentation/pages/categories_view.dart';
+import 'package:chef_staff/authentication/data/repositories/auth_repository.dart';
+import 'package:chef_staff/authentication/presentation/manager/auth_view_model.dart';
+import 'package:chef_staff/authentication/presentation/pages/login_view.dart';
+import 'package:chef_staff/authentication/presentation/pages/sign_up_view.dart';
 import 'package:chef_staff/chef_staff/data/repositories/chef_staff_repository.dart';
+import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view.dart';
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
 import 'package:chef_staff/core/client.dart';
 import 'package:chef_staff/core/sizes.dart';
@@ -25,12 +27,21 @@ final GoRouter router = GoRouter(initialLocation: "/", routes: [
       ),
     ),
   ),
+  // GoRoute(
+  //     path: "/",
+  //     builder: (context, state) => LoginView()),
   GoRoute(
-      path: "/",
-      builder: (context, state) => CategoriesView(
-            vm: CategoriesViewModel(
-                repo: CategoriesRepository(client: ApiClient())),
-          )),
+    path: "/",
+    builder: (context, state) => LoginView(
+      vm: LoginViewModel(
+        repo: AuthRepository(
+          client: ApiClient(),
+        ),
+      ),
+    ),
+  ),
+  GoRoute(path: "/signup", builder: (context, state) => SignUpView()),
+  GoRoute(path: "/profile", builder: (context, state) => ChefStaffView(vm: ChefStaffViewModel(repo: ChefStaffRepository(client: ApiClient())))),
 ]);
 
 class MyApp extends StatelessWidget {

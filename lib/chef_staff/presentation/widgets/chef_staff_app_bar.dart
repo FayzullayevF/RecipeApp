@@ -43,7 +43,7 @@ class ChefStaffAppBarBody extends StatelessWidget
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
-                    spacing: 5,
+                    spacing: 4,
                     children: [
                       ShareContainer(text: "Edit Profile"),
                       ShareContainer(text: "Share Profile"),

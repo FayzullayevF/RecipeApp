@@ -7,11 +7,13 @@ class RecipePasswordFormField extends StatelessWidget {
   const RecipePasswordFormField({
     super.key,
     required this.controller,
-    required this.title
+    required this.title,
+    required this.validator
   });
 
   final TextEditingController controller;
   final String title;
+  final String? Function(String? value) validator;
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ class ChefStaffViewModel extends ChangeNotifier {
   ChefStuffModel? model;
    List<RecipeModel>? recipeModel;
   final ChefStaffRepository _repo;
-  bool loading = true;
+  bool loading = false;
   Future<void> load() async {
     loading = true;
     notifyListeners();

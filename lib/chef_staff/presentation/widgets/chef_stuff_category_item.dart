@@ -116,7 +116,7 @@ class ChefStuffCategoryItem extends StatelessWidget {
               child: Container(
                 width: 28 * AppSizes.wRatio,
                 height: 28 * AppSizes.hRatio,
-                decoration: BoxDecoration(
+                 decoration: BoxDecoration(
                   color: AppColors.nameColor,
                   borderRadius: BorderRadius.circular(14),
                 ),

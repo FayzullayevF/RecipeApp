@@ -19,14 +19,14 @@ class ChefStaffBody extends StatelessWidget {
         crossAxisSpacing: 17.5,
         mainAxisSpacing: 40,
       ),
-      itemCount: vm.recipeModel!.length,
+      itemCount: vm.recipeModel?.length,
       itemBuilder: (context, index) {
         return ChefStuffCategoryItem(
-          image: vm.recipeModel![index].photo,
-          title: vm.recipeModel![index].title,
-          desc: vm.recipeModel![index].description,
-          rating: vm.recipeModel![index].rating,
-          time: vm.recipeModel![index].timeRequired,
+          image: vm.recipeModel?[index].photo ?? "assets/icons/rumi.png",
+          title: vm.recipeModel?[index].title ?? "null",
+          desc: vm.recipeModel?[index].description ?? "null desc",
+          rating: vm.recipeModel?[index].rating ?? 0,
+          time: vm.recipeModel?[index].timeRequired ?? 1,
         );
       },
     );

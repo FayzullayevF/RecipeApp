@@ -1,7 +1,11 @@
 import 'package:chef_staff/authentication/data/repositories/auth_repository.dart';
 import 'package:chef_staff/authentication/presentation/manager/auth_view_model.dart';
 import 'package:chef_staff/authentication/presentation/pages/login_view.dart';
+import 'package:chef_staff/authentication/presentation/pages/profile_image_picker.dart';
 import 'package:chef_staff/authentication/presentation/pages/sign_up_view.dart';
+import 'package:chef_staff/categories/data/repositories/categories_repository.dart';
+import 'package:chef_staff/categories/presentation/manager/categories_view_model.dart';
+import 'package:chef_staff/categories/presentation/pages/categories_view.dart';
 import 'package:chef_staff/chef_staff/data/repositories/chef_staff_repository.dart';
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view.dart';
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
@@ -20,7 +24,7 @@ void main() {
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final GoRouter router =
-    GoRouter(navigatorKey: navigatorKey, initialLocation: "/", routes: [
+    GoRouter(navigatorKey: navigatorKey, initialLocation: "/profileimage", routes: [
   GoRoute(
     path: "/onboarding_last",
     builder: (context, state) => OnboardingLastPage(
@@ -47,7 +51,17 @@ final GoRouter router =
       ),
     ),
   ),
+  GoRoute(
+      path: "/categories",
+      builder: (context, state) => CategoriesView(
+            vm: CategoriesViewModel(
+              repo: CategoriesRepository(
+                client: ApiClient(),
+              ),
+            ),
+          )),
   GoRoute(path: "/signup", builder: (context, state) => SignUpView()),
+  GoRoute(path: "/profileimage", builder: (context, satate)=> ProfileImagePicker())
 ]);
 
 class MyApp extends StatelessWidget {

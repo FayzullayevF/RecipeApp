@@ -1,6 +1,7 @@
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view_model.dart';
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class Onboarding_Last_Page extends StatelessWidget {
   const Onboarding_Last_Page({
     super.key,

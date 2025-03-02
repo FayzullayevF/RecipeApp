@@ -1,10 +1,10 @@
-import 'package:chef_staff/authentication/data/repositories/sign_up_repository.dart';
+import 'package:chef_staff/authentication/data/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 class SignUpViewModel extends ChangeNotifier {
-  SignUpViewModel({required SignUpRepository repo}) : _repo = repo;
+  SignUpViewModel({required AuthRepository authRepo}) : _authRepo = authRepo;
 
-  final SignUpRepository _repo;
+  final AuthRepository _authRepo;
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -30,14 +30,14 @@ class SignUpViewModel extends ChangeNotifier {
 
   Future<bool> signUp() async {
     try {
-      await _repo.signUp(
-        firstNameController.text,
-        lastNameController.text,
-        userNameContorller.text,
-        emailController.text,
-        phoneNumberController.text,
-        birthDateController.text,
-        passwordController.text,
+      await _authRepo.signUp(
+        firstName:   firstNameController.text,
+        lastName:    lastNameController.text,
+        username:    userNameContorller.text,
+        email:       emailController.text,
+        phoneNumber: phoneNumberController.text,
+        birthDate:   selectedDate!,
+        password:    passwordController.text,
       );
     } on Exception catch (e) {
       _errorMessage = e.toString();

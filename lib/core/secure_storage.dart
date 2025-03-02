@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorage {
@@ -49,7 +47,7 @@ class SignUpSecureStorage {
   static const usernameKey = 'username';
   static const emailKey = 'email';
   static const phoneNumberKey = 'phoneNumber';
-  static const birthDateKey = 'birthDate';
+  static const birthDateKey = 'dateOfBirth';
   static const _signUpStorage = FlutterSecureStorage();
 
   static Future<void> saveToken(String token) async {

@@ -7,20 +7,21 @@ class AppBarAll extends StatelessWidget implements PreferredSizeWidget {
   const AppBarAll({
     super.key,
     required this.title,
-    required this.leading,
-    required this.action1,
-    required this.action2,
+    this.leading,
+    this.action1,
+    this.action2,
   });
 
+  @override
   Size get preferredSize => const Size(double.infinity, 64);
   final String title;
-  final String leading, action1, action2;
+  final String? leading, action1, action2;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.mainBackgroundColor,
-      leading: Center(child: SvgPicture.asset(leading)),
+      leading: leading != null ? Center(child: SvgPicture.asset(leading!)) : SizedBox(),
       title: Text(
         title,
         style: TextStyle(
@@ -33,16 +34,18 @@ class AppBarAll extends StatelessWidget implements PreferredSizeWidget {
         Row(
           spacing: 5,
           children: [
-            Container(
+            if(action1 != null)
+             Container(
               width: 28 * AppSizes.wRatio,
               height: 28 * AppSizes.hRatio,
               decoration: BoxDecoration(
                   color: AppColors.actionContainerColor,
                   borderRadius: BorderRadius.circular(14)),
               child: Center(
-                child: SvgPicture.asset(action1),
+                child: SvgPicture.asset(action1!),
               ),
             ),
+            if(action2 != null)
             Container(
               width: 28 * AppSizes.wRatio,
               height: 28 * AppSizes.hRatio,
@@ -50,7 +53,7 @@ class AppBarAll extends StatelessWidget implements PreferredSizeWidget {
                   color: AppColors.actionContainerColor,
                   borderRadius: BorderRadius.circular(14)),
               child: Center(
-                child: SvgPicture.asset(action2),
+                child: SvgPicture.asset(action2!),
               ),
             ),
           ],

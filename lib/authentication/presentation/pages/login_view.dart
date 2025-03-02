@@ -11,7 +11,7 @@ import 'package:go_router/go_router.dart';
 import '../widgets/page_text.dart';
 
 class LoginView extends StatelessWidget {
-  LoginView({
+  const LoginView({
     super.key,
     required this.vm,
   });
@@ -41,11 +41,7 @@ class LoginView extends StatelessWidget {
               key: vm.formKey,
               child: login_form_field(vm: vm),
             ),
-            if (vm.hasError)
-              Text(
-                vm.errorMessage!,
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
-              )
+           
           ]),
         ),
       ),
@@ -53,6 +49,7 @@ class LoginView extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types
 class login_form_field extends StatelessWidget {
   const login_form_field({
     super.key,
@@ -81,6 +78,14 @@ class login_form_field extends StatelessWidget {
             title: "Password",
             validator: (value) => null,
           ),
+          if (vm.hasError)
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 200),
+                child: Text(
+                  vm.errorMessage!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
           SizedBox(
             height: 40,
           ),
@@ -89,11 +94,7 @@ class login_form_field extends StatelessWidget {
               callback: () async {
                 if (vm.formKey.currentState!.validate()) {
                   if (await vm.login() && context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Center(child: Text("banzay")),
-                      ),
-                    );
+                    context.go('/');
                   }else{
                     Center(child: Text("User not found", style: TextStyle(color: Colors.red),));
                   }

@@ -1,13 +1,11 @@
+import 'package:chef_staff/authentication/data/models/user_model.dart';
 import 'package:chef_staff/core/exceptions/auth_exceptions.dart';
-import 'package:chef_staff/core/interceptor.dart';
-import 'package:chef_staff/core/secure_storage.dart';
-import 'package:chef_staff/main.dart';
 import 'package:dio/dio.dart';
-import 'package:go_router/go_router.dart';
+
 
 class ApiClient {
   final Dio dio = Dio(BaseOptions(
-      baseUrl: "http://10.10.0.75:8888/api/v1",
+      baseUrl: "http://192.168.0.106:8888/api/v1",
       validateStatus: (status) => true));
 
   Future<Map<String, dynamic>> fetchUser() async {
@@ -64,28 +62,9 @@ class ApiClient {
     }
   }
 
-  Future<String> signUp(
-      String firstName,
-      String lastName,
-      String username,
-      String email,
-      String phoneNumber,
-      String birthDate,
-      String password) async {
-    var response = await dio.post('/auth/register', data: {
-      "username": username,
-      "fullName": "$firstName $lastName",
-      "email": email,
-      "phoneNumber": phoneNumber,
-      "birthDate": birthDate,
-      "password": password,
-    });
-    if (response.statusCode == 200) {
-      Map<String, String> data = Map<String, String>.from(response.data);
-      return data['accessToken']!;
-    } else {
-      throw AuthException(message: "User not created");
-    }
+  Future<bool> signUp(UserModels model) async {
+    var response = await dio.post('/auth/register', data: model.toJson());
+    return response.statusCode == 201 ? true : false;
   }
   
   Future<dynamic> fetchRecipeById(int recipeId) async{

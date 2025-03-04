@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chef_staff/authentication/data/models/user_model.dart';
 import 'package:chef_staff/core/client.dart';
 import 'package:chef_staff/core/secure_storage.dart';
@@ -18,6 +20,11 @@ class AuthRepository {
   Future<void> logout() async {
     await SecureStorage.deleteCredentials();
     await SecureStorage.deleteToken();
+  }
+
+  Future<bool> uploadProfilePhoto(File file)async{
+    final result = await client.uploadProfilePhoto(file);
+    return result;
   }
 
   Future<bool> signUp(

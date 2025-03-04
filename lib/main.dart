@@ -1,7 +1,7 @@
 import 'package:chef_staff/authentication/data/repositories/auth_repository.dart';
 import 'package:chef_staff/authentication/presentation/manager/auth_view_model.dart';
 import 'package:chef_staff/authentication/presentation/pages/login_view.dart';
-import 'package:chef_staff/authentication/presentation/pages/profile_image_picker.dart';
+import 'package:chef_staff/authentication/presentation/pages/complate_profile_view.dart';
 import 'package:chef_staff/authentication/presentation/pages/sign_up_view.dart';
 import 'package:chef_staff/categories/data/repositories/categories_repository.dart';
 import 'package:chef_staff/categories/presentation/manager/categories_view_model.dart';
@@ -15,6 +15,7 @@ import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils/themes.dart';
 import 'package:chef_staff/onboarding/presentation/pages/onboarding_last_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSizes.init(context);
+    ScreenUtil.init(context, designSize: Size(430, 932));
     return MultiProvider(
       providers: providers,
       builder: (context, child) => MaterialApp.router(

@@ -4,6 +4,7 @@ import 'package:chef_staff/core/presentations/app_bar_all.dart';
 import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView({super.key, required this.vm});
@@ -36,13 +37,13 @@ class CategoryPageItem extends StatelessWidget {
         builder: (context, child) {
           return ListView(
             padding: EdgeInsets.fromLTRB(
-                AppSizes.padding38, 20, AppSizes.padding38, 100),
+                38.w, 20.h, 38.w, 100.h),
             children: [
               if (vm.mainCategory != null)
                 CategoriesItem(
                   model: vm.mainCategory!,
-                  width: 356 * AppSizes.wRatio,
-                  height: 148,
+                  width: 356.w,
+                  height: 148.h,
                   main: true,
                 ),
               SizedBox(

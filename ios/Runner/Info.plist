@@ -45,5 +45,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+<string>Ilova rasmlarni tanlash uchun ruxsat so‘raydi</string>
+<key>NSCameraUsageDescription</key>
+<string>Ilova kameradan foydalanish uchun ruxsat so‘raydi</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Ilova mikrofonni ishlatish uchun ruxsat so‘raydi</string>
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>Ilova rasmlarni saqlash uchun ruxsat so‘raydi</string>
+
 </dict>
 </plist>

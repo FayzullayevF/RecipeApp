@@ -1,11 +1,12 @@
+import 'dart:io';
+
 import 'package:chef_staff/authentication/data/models/user_model.dart';
 import 'package:chef_staff/core/exceptions/auth_exceptions.dart';
 import 'package:dio/dio.dart';
 
-
 class ApiClient {
   final Dio dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.0.106:8888/api/v1",
+      baseUrl: "http://10.10.1.91:8000/api/v1",
       validateStatus: (status) => true));
 
   Future<Map<String, dynamic>> fetchUser() async {
@@ -13,10 +14,10 @@ class ApiClient {
     if (response.statusCode == 200) {
       Map<String, dynamic> data = response.data;
       return data;
-    } else{
+    } else {
       throw AuthException(message: "Auth error!");
     }
-    }
+  }
 
   Future<List<Map<String, dynamic>>> fetchRecipes() async {
     var responseRecipe = await dio.get("/recipes/list");
@@ -66,14 +67,30 @@ class ApiClient {
     var response = await dio.post('/auth/register', data: model.toJson());
     return response.statusCode == 201 ? true : false;
   }
-  
-  Future<dynamic> fetchRecipeById(int recipeId) async{
+
+  Future<dynamic> fetchRecipeById(int recipeId) async {
     var response = await dio.get("/recipes/detail/$recipeId");
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       return response.data;
-    }else{
+    } else {
       throw Exception("Recipe is not come from backend");
     }
   }
-}
 
+  Future<bool> uploadProfilePhoto(File file) async {
+    FormData formData = FormData.fromMap({
+      "profilePhoto": await MultipartFile.fromFile(file.path,
+          filename: file.path.split("/").last)
+    });
+    var response = await dio.patch(
+      "/auth/upload",
+      data: formData,
+      options: Options(headers: {"Content-Type": "multipart/form-data"}),
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}

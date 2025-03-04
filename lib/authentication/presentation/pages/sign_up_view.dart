@@ -113,11 +113,18 @@ class SignUpView extends StatelessWidget {
                                         width: 250,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.circular(40),
+                                          borderRadius:
+                                              BorderRadius.circular(40),
                                         ),
                                         child: Column(
                                           children: [
-                                            Text("Sign Up Succesfully!"),
+                                            Text(
+                                              "Sign Up Succesfully!",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       )));

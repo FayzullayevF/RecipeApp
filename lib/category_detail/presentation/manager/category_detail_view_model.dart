@@ -15,13 +15,27 @@ class CategoryDetailViewModel with ChangeNotifier {
 
   List<CategoriesModel> categories = [];
   List<RecipeModel> recipes = [];
+  bool isLoading = true;
 
-  CategoriesModel? selected;
+  late CategoriesModel _selected;
+  CategoriesModel get selected => _selected;
+  set selected(CategoriesModel model){
+    _selected = model;
+    notifyListeners();
+    fetchRecipesByCategory(_selected.id);
+  }
 
   Future<void> load()async{
-    categories = await _catRepo.fetchCategories();
-    recipes = await _recipeRepo.fetchRecipeByCategory(selected == null ? 1 : selected!.id);
+    isLoading = true;
     notifyListeners();
+    categories = await _catRepo.fetchCategories();
+    selected = categories.first;
+    recipes = await _recipeRepo.fetchRecipeByCategory(selected.id);
+    isLoading = false;
+    notifyListeners();
+  }
+  Future<void> fetchRecipesByCategory(int categoryId)async{
+    recipes = await _recipeRepo.fetchRecipeByCategory(selected.id);
   }
 
 }

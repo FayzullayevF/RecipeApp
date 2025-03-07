@@ -96,19 +96,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppSizes.init(context);
     ScreenUtil.init(context, designSize: Size(430, 932));
-    return MultiProvider(
-      providers: providers,
-      builder: (context, child) => MaterialApp(
-          theme: AppThemes.darkThemes,
-          debugShowCheckedModeBanner: false,
-          home: CategoryDetailView(
-            vm: CategoryDetailViewModel(
-              catRepo: CategoriesRepository(client: ApiClient()),
-              recipeRepo: RecipeRepository(
-                client: ApiClient(),
-              ),
-            ),
-          )),
+    return MaterialApp(
+      theme: AppThemes.darkThemes,
+      debugShowCheckedModeBanner: false,
+      home: CategoryDetailView(
+        vm: CategoryDetailViewModel(
+          catRepo: CategoriesRepository(client: ApiClient()),
+          recipeRepo: RecipeRepository(
+            client: ApiClient(),
+          ),
+        )..load(),
+      ),
     );
   }
 }

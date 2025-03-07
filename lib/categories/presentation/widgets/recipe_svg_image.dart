@@ -1,15 +1,16 @@
-import 'package:chef_staff/core/utils/utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../../core/utils/utils.dart';
 
 class RecipeSvgImage extends StatelessWidget {
   const RecipeSvgImage({
     super.key,
     this.alignment = Alignment.center,
     this.color = AppColors.nameColor,
-    required this.height,
     required this.image,
     required this.width,
+    required this.height,
   });
 
   final String image;
@@ -26,10 +27,7 @@ class RecipeSvgImage extends StatelessWidget {
         width: width,
         height: height,
         fit: BoxFit.cover,
-        colorFilter: ColorFilter.mode(
-          color,
-          BlendMode.srcIn,
-        ),
+        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
       ),
     );
   }

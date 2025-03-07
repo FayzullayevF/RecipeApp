@@ -1,42 +1,42 @@
+import 'package:chef_staff/category_detail/data/model/recipe_model.dart';
+import 'package:chef_staff/core/utils/utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecipeItemImage extends StatelessWidget {
   const RecipeItemImage({
     super.key,
-    required this.image,
+    required this.recipeModel,
   });
 
-  final String image;
+  final RecipeModel recipeModel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            color: Colors.black.withValues(alpha: 0.25),
-            offset: Offset(0, 4),
-            blurRadius: 4),
-      ]),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(14),
-        child: Image.network(
-          image,
-          width: 169.w,
-          height: 153.h,
-          loadingBuilder: (BuildContext context, Widget child,
-              ImageChunkEvent? loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Center(
-              child: CircularProgressIndicator(
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
-              ),
-            );
-          },
-          fit: BoxFit.cover,
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Container(
+        width: 169.w,
+        height: 153.h,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.mainBackgroundColor.withValues(alpha: 0.25),
+              blurRadius: 4,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+        alignment: Alignment.center,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(14),
+          child: Image.network(
+            recipeModel.photo,
+            width: 169.w,
+            height: 153.h,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

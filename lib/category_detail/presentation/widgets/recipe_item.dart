@@ -1,0 +1,50 @@
+import 'package:chef_staff/category_detail/data/model/recipe_model.dart';
+import 'package:chef_staff/category_detail/presentation/widgets/recipe_item_description.dart';
+import 'package:chef_staff/category_detail/presentation/widgets/recipe_item_image.dart';
+import 'package:chef_staff/category_detail/presentation/widgets/recipe_item_title.dart';
+import 'package:chef_staff/category_detail/presentation/widgets/recipe_rating.dart';
+import 'package:chef_staff/category_detail/presentation/widgets/recipe_time.dart';
+import 'package:chef_staff/core/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class RecipeItem extends StatelessWidget {
+  const RecipeItem({
+    super.key,
+    required this.recipeModel,
+  });
+
+  final RecipeModel recipeModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(alignment: Alignment.bottomCenter, children: [
+      Container(
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        width: 158.5.w,
+        height: 76.h,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(14)),
+          border: Border.all(color: AppColors.pinkSubColor, width: 1),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RecipeItemTitle(recipeModel: recipeModel),
+            RecipeItemDescription(recipeModel: recipeModel),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RecipeRating(recipeModel: recipeModel),
+                RecipeTime(recipeModel: recipeModel)
+              ],
+            )
+          ],
+        ),
+      ),
+      RecipeItemImage(recipeModel: recipeModel),
+    ]);
+  }
+}

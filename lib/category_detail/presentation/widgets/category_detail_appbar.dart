@@ -1,10 +1,7 @@
-import 'package:chef_staff/categories/data/models/categories_model.dart';
-import 'package:chef_staff/category_detail/presentation/widgets/category_detail_appbar_bottom.dart';
 import 'package:chef_staff/core/presentations/app_bar_actions.dart';
 import 'package:chef_staff/core/presentations/recipe_icon_button.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const RecipeAppBar({
@@ -28,16 +25,16 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 36),
+      padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 10),
       child: AppBar(
         toolbarHeight: toolBarHeight,
-        leadingWidth: 20,
+        leadingWidth: 25,
         leading: Align(
             alignment: Alignment.centerLeft,
             child: RecipeIconButton(
               image: "assets/icons/back-arrow.svg",
               width: 25,
-              height: 27,
+              height: 17,
               callback: () {},
             )),
         centerTitle: true,
@@ -58,6 +55,7 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 svg_Color: AppColors.pinkSubColor,
                 
               ),
+              SizedBox(width: 5,),
               AppBarActions(
                 svg: "assets/icons/search.svg",
                 color: AppColors.actionContainerColor,

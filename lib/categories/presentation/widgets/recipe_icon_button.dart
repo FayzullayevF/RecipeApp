@@ -1,6 +1,7 @@
-import 'package:chef_staff/category_detail/presentation/widgets/recipe_svg_image.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/presentations/recipe_svg_image.dart';
 
 class RecipeIconButton extends StatelessWidget {
   const RecipeIconButton({

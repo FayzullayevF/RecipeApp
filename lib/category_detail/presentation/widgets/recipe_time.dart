@@ -1,38 +1,29 @@
-import 'package:chef_staff/category_detail/presentation/widgets/recipe_svg_image.dart';
+import 'package:chef_staff/category_detail/data/model/recipe_model.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RecipeTime extends StatelessWidget {
   const RecipeTime({
     super.key,
-    required this.time,
-    this.textColor = AppColors.pinkSubColor,
-    this.iconColor = AppColors.pinkSubColor,
+    required this.recipeModel,
   });
 
-  final int time;
-  final Color textColor, iconColor;
+  final RecipeModel recipeModel;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      spacing: 5,
       children: [
-        RecipeSvgImage(
-          height: 10,
-          image: "assets/icons/clock.svg",
-          width: 10,
-          color: iconColor,
-        ),
-        SizedBox(
-          width: 5,
-        ),
         Text(
-          "${time}min",
+          "${recipeModel.time.toString()}min",
           style: TextStyle(
-            color: textColor,
+            color: AppColors.pinkSubColor,
             fontSize: 12,
           ),
-        )
+        ),
+        SvgPicture.asset("assets/icons/clock.svg")
       ],
     );
   }

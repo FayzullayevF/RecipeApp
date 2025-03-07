@@ -38,9 +38,6 @@ class CategoryPageItem extends StatelessWidget {
               if (vm.mainCategory != null)
                 CategoriesItem(
                   category: vm.mainCategory!,
-                  width: 356.w,
-                  height: 148.h,
-                  main: true,
                 ),
               SizedBox(
                 height: 35,
@@ -56,10 +53,7 @@ class CategoryPageItem extends StatelessWidget {
                 itemCount: vm.categories.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                      onTap: () {
-                        final selectedCategory = vm.categories[index];
-                        context.go("/categorydetail", extra: selectedCategory);
-                      },
+                      onTap: () {},
                       child: CategoriesItem(category: vm.categories[index]));
                 },
               ),

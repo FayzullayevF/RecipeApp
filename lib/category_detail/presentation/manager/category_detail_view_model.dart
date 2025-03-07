@@ -5,11 +5,13 @@ import 'package:chef_staff/category_detail/data/repositories/recipe_repository.d
 import 'package:flutter/material.dart';
 
 class CategoryDetailViewModel with ChangeNotifier {
-  CategoryDetailViewModel(
-      {required CategoriesRepository catRepo,
-      required RecipeRepository recipeRepo})
-      : _catRepo = catRepo,
-        _recipeRepo = recipeRepo;
+  CategoryDetailViewModel({
+    required CategoriesRepository catRepo,
+    required RecipeRepository recipeRepo,
+    required CategoriesModel selected,
+  })  : _catRepo = catRepo,
+        _recipeRepo = recipeRepo,
+        _selected = selected;
   final CategoriesRepository _catRepo;
   final RecipeRepository _recipeRepo;
 
@@ -18,24 +20,25 @@ class CategoryDetailViewModel with ChangeNotifier {
   bool isLoading = true;
 
   late CategoriesModel _selected;
+
   CategoriesModel get selected => _selected;
-  set selected(CategoriesModel model){
+
+  set selected(CategoriesModel model) {
     _selected = model;
     notifyListeners();
     fetchRecipesByCategory(_selected.id);
   }
 
-  Future<void> load()async{
+  Future<void> load() async {
     isLoading = true;
     notifyListeners();
     categories = await _catRepo.fetchCategories();
-    selected = categories.first;
     recipes = await _recipeRepo.fetchRecipeByCategory(selected.id);
     isLoading = false;
     notifyListeners();
   }
-  Future<void> fetchRecipesByCategory(int categoryId)async{
+
+  Future<void> fetchRecipesByCategory(int categoryId) async {
     recipes = await _recipeRepo.fetchRecipeByCategory(selected.id);
   }
-
 }

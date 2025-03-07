@@ -40,7 +40,7 @@ class ProfileScaffold extends StatelessWidget {
         bottomNavigationBar:
             Padding(
               padding: const EdgeInsets.only(bottom: 50,left: 36,right: 36),
-              child: BottomNavBarItem(),
+              child: RecipeBottomNavigationBar(),
             ),
       ),
     );

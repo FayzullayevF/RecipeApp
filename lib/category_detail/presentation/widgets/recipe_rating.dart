@@ -6,10 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class RecipeRating extends StatelessWidget {
   const RecipeRating({
     super.key,
-    required this.recipeModel,
+    required this.rating,
   });
 
-  final RecipeModel recipeModel;
+  final num rating;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class RecipeRating extends StatelessWidget {
       spacing: 5,
       children: [
         Text(
-          recipeModel.rating.toString(),
+          rating.toString(),
           style: TextStyle(
             color: AppColors.pinkSubColor,
             fontSize: 12,

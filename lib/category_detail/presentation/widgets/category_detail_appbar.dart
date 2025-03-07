@@ -8,12 +8,14 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.bottom,
-    this.toolBarHeight = 72
+    this.toolBarHeight = 72,
+    required this.backButtonCallBack
   });
 
   final String title;
   final PreferredSizeWidget? bottom;
   final double toolBarHeight;
+  final VoidCallback backButtonCallBack;
 
   @override
   Size get preferredSize {
@@ -35,7 +37,7 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
               image: "assets/icons/back-arrow.svg",
               width: 25,
               height: 17,
-              callback: () {},
+              callback: backButtonCallBack,
             )),
         centerTitle: true,
         title: Text(

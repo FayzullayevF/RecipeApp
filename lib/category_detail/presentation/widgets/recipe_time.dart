@@ -6,10 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 class RecipeTime extends StatelessWidget {
   const RecipeTime({
     super.key,
-    required this.recipeModel,
+    required this.timeRequired,
   });
 
-  final RecipeModel recipeModel;
+  final int timeRequired;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class RecipeTime extends StatelessWidget {
       spacing: 5,
       children: [
         Text(
-          "${recipeModel.time.toString()}min",
+          "${timeRequired.toString()}min",
           style: TextStyle(
             color: AppColors.pinkSubColor,
             fontSize: 12,

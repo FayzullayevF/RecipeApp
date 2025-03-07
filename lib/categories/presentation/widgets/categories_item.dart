@@ -5,18 +5,15 @@ import 'package:chef_staff/core/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/routing/routes.dart';
+
 class CategoriesItem extends StatelessWidget {
   const CategoriesItem({
     super.key,
-    this.main = false,
     required this.category,
-    this.height = 145,
-    this.width = 159,
   });
 
   final CategoriesModel category;
-  final double width, height;
-  final bool main;
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +22,30 @@ class CategoriesItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         child: Image.network(
           category.image,
-          width: width * AppSizes.wRatio,
-          height: height * AppSizes.hRatio,
+          width: category.main ? 365 : 160,
+          height: category.main ? 150 : 145,
           fit: BoxFit.cover,
         ),
       ),
     );
-    Widget title = Text(category.title,);
+    Widget title = Text(
+      category.title,
+      style: TextStyle(
+        color: Colors.white,
+      ),
+    );
     return GestureDetector(
       onTap: () {
-        log("category $category");
-        context.go('/categorydetail', extra: category);
+        GoRouter.of(context).go("${Routes.categoryDetail}?src=${Routes.categories}", extra: category);
       },
       child: Column(
+        spacing: category.main ? 3 : 1,
         children: [
-          main ? title : image,
-          SizedBox(height: 5,),
-          main ? image : title,
+          category.main ? title : image,
+          SizedBox(
+            height: 5,
+          ),
+          category.main ? image : title,
         ],
       ),
     );

@@ -6,14 +6,13 @@ import 'package:chef_staff/core/presentations/bottom_navigation_bar.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoryDetailView extends StatelessWidget {
-  const CategoryDetailView({
-    super.key,
-    required this.vm,
-  });
+  const CategoryDetailView({super.key, required this.vm, required this.src});
 
   final CategoryDetailViewModel vm;
+  final String src;
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +30,19 @@ class CategoryDetailView extends StatelessWidget {
           return Scaffold(
             extendBody: true,
             appBar: RecipeAppBar(
-                title: vm.selected.title, bottom: RecipeAppBarBottom(vm: vm)),
+              title: vm.selected.title,
+              bottom: RecipeAppBarBottom(vm: vm),
+              backButtonCallBack: () => context.go(src),
+            ),
             body: GridView.builder(
               padding: EdgeInsets.fromLTRB(16, 36, 12, 120),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 226,
-                mainAxisSpacing: 30
-              ),
+                  crossAxisCount: 2, mainAxisExtent: 226, mainAxisSpacing: 30),
               itemCount: vm.recipes.length,
-              itemBuilder: (context, index) => RecipeItem(recipeModel: vm.recipes[index]),
+              itemBuilder: (context, index) =>
+                  RecipeItem(recipeModel: vm.recipes[index]),
             ),
-            bottomNavigationBar: BottomNavBarItem(),
+            bottomNavigationBar: RecipeBottomNavigationBar(),
           );
         }
       },

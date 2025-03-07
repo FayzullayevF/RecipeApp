@@ -93,4 +93,34 @@ class ApiClient {
       return false;
     }
   }
+
+  Future<List<dynamic>> fetchRecipesByCategory(int categoryId) async {
+    var response = await dio.get("/recipes/list?Category=$categoryId");
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    } else {
+      throw Exception("CategoryDetail did not come yet");
+    }
+  }
+
+  Future<dynamic> fetchTrendingRecipe() async {
+    var response = await dio.get("/recipes/trending-recipe");
+    if (response.statusCode == 200) {
+      dynamic data = response.data;
+      return data;
+    } else {
+      throw Exception("Trending recipe did not come");
+    }
+  }
+
+  Future<List<dynamic>> fetchYourREcipes() async {
+    var response = await dio.get("/recipes/list?Limit=2");
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    } else {
+      throw Exception("recipeList limit did not come");
+    }
+  }
 }

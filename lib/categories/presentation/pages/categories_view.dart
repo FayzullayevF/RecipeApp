@@ -1,10 +1,10 @@
 import 'package:chef_staff/categories/presentation/manager/categories_view_model.dart';
 import 'package:chef_staff/categories/presentation/widgets/categories_item.dart';
-import 'package:chef_staff/core/presentations/app_bar_all.dart';
-import 'package:chef_staff/core/sizes.dart';
+import 'package:chef_staff/categories/presentation/widgets/recipe_appbar.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView({super.key, required this.vm});
@@ -13,13 +13,9 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody:  true,
       backgroundColor: AppColors.mainBackgroundColor,
-      appBar: AppBarAll(
-        title: 'Categories',
-        leading: "assets/icons/back-arrow.svg",
-        action1: 'assets/icons/home.svg',
-        action2: 'assets/icons/heart.svg',
-      ),
+      appBar: RecipeAppbar(title: "Categories",),
       body: CategoryPageItem(vm: vm),
     );
   }
@@ -36,12 +32,12 @@ class CategoryPageItem extends StatelessWidget {
         listenable: vm,
         builder: (context, child) {
           return ListView(
-            padding: EdgeInsets.fromLTRB(
-                38.w, 20.h, 38.w, 100.h),
+            shrinkWrap: true,
+            padding: EdgeInsets.fromLTRB(38.w, 20.h, 38.w, 100.h),
             children: [
               if (vm.mainCategory != null)
                 CategoriesItem(
-                  model: vm.mainCategory!,
+                  category: vm.mainCategory!,
                   width: 356.w,
                   height: 148.h,
                   main: true,
@@ -59,7 +55,12 @@ class CategoryPageItem extends StatelessWidget {
                 ),
                 itemCount: vm.categories.length,
                 itemBuilder: (context, index) {
-                  return CategoriesItem(model: vm.categories[index]);
+                  return GestureDetector(
+                      onTap: () {
+                        final selectedCategory = vm.categories[index];
+                        context.go("/categorydetail", extra: selectedCategory);
+                      },
+                      child: CategoriesItem(category: vm.categories[index]));
                 },
               ),
             ],

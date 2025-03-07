@@ -13,10 +13,10 @@ class CategoriesModel {
 
   factory CategoriesModel.fromJson(Map<String, dynamic> json) {
     return CategoriesModel(
-      id: json['id'],
-      title: json['title'],
-      image: json['image'],
-      main: json['main'],
+      id: json['id'] as int,
+      title: json['title'] as String,
+      image: json['image'] as String,
+      main: json['main'] as bool,
     );
   }
 }

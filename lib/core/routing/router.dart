@@ -1,6 +1,7 @@
 import 'package:chef_staff/authentication/presentation/pages/login_view.dart';
 import 'package:chef_staff/authentication/presentation/pages/sign_up_view.dart';
 import 'package:chef_staff/categories/presentation/pages/categories_view.dart';
+import 'package:chef_staff/category_detail/presentation/pages/category_detail_view.dart';
 import 'package:chef_staff/chef_staff/presentation/pages/chef_staff_view.dart';
 import 'package:chef_staff/core/routing/routes.dart';
 import 'package:chef_staff/onboarding/presentation/pages/onboarding_view.dart';
@@ -26,5 +27,8 @@ GoRouter router() => GoRouter(initialLocation: Routes.login, routes: [
       GoRoute(
         path: Routes.signUp,
         builder: (context, state) => SignUpView(),
-      )
+      ),GoRoute(
+        path: Routes.recipeDetail,
+        builder: (context, state) => CategoryDetailView(vm: context.read(),),
+      ),
     ]);

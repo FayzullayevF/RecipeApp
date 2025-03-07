@@ -1,17 +1,20 @@
+import 'dart:developer';
+
 import 'package:chef_staff/categories/data/models/categories_model.dart';
 import 'package:chef_staff/core/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoriesItem extends StatelessWidget {
   const CategoriesItem({
     super.key,
     this.main = false,
-    required this.model,
+    required this.category,
     this.height = 145,
     this.width = 159,
   });
 
-  final CategoriesModel model;
+  final CategoriesModel category;
   final double width, height;
   final bool main;
 
@@ -20,19 +23,24 @@ class CategoriesItem extends StatelessWidget {
     Widget image = Center(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
-        child: Image.network(model.image,
+        child: Image.network(
+          category.image,
           width: width * AppSizes.wRatio,
           height: height * AppSizes.hRatio,
           fit: BoxFit.cover,
         ),
       ),
     );
-    Widget title = Text(model.title, style: TextStyle(color: Colors.white),);
-    return SingleChildScrollView(
+    Widget title = Text(category.title,);
+    return GestureDetector(
+      onTap: () {
+        log("category $category");
+        context.go('/categorydetail', extra: category);
+      },
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           main ? title : image,
+          SizedBox(height: 5,),
           main ? image : title,
         ],
       ),

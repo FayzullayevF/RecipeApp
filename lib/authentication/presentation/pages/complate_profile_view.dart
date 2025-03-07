@@ -1,22 +1,16 @@
 import 'package:chef_staff/authentication/presentation/manager/complite_profile_view_model.dart';
 import 'package:chef_staff/authentication/presentation/widgets/gender_text_field.dart';
 import 'package:chef_staff/authentication/presentation/widgets/profile_photo_picker.dart';
-import 'package:chef_staff/authentication/presentation/widgets/recipe_text_form_field.dart';
 import 'package:chef_staff/core/presentations/app_bar_all.dart';
 import 'package:chef_staff/core/presentations/recipe_eleveted_button.dart';
-import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-
 import 'package:provider/provider.dart';
 
 class ProfileImagePicker extends StatefulWidget {
-  ProfileImagePicker({super.key});
+  const ProfileImagePicker({super.key});
 
   @override
   State<ProfileImagePicker> createState() => _ProfileImagePickerState();

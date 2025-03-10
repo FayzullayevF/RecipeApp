@@ -9,13 +9,15 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.bottom,
     this.toolBarHeight = 72,
-    required this.backButtonCallBack
+    required this.backButtonCallBack,
+    required this.actions
   });
 
   final String title;
   final PreferredSizeWidget? bottom;
   final double toolBarHeight;
   final VoidCallback backButtonCallBack;
+  final List<Widget> actions;
 
   @override
   Size get preferredSize {
@@ -48,24 +50,7 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        actions: [
-          Row(
-            children: [
-              AppBarActions(
-                svg: "assets/icons/notification.svg",
-                color: AppColors.actionContainerColor,
-                svg_Color: AppColors.pinkSubColor,
-                
-              ),
-              SizedBox(width: 5,),
-              AppBarActions(
-                svg: "assets/icons/search.svg",
-                color: AppColors.actionContainerColor,
-                svg_Color: AppColors.pinkSubColor,
-              ),
-            ],
-          )
-        ],
+        actions: actions,
         bottom: bottom
       ),
     );

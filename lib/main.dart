@@ -4,11 +4,16 @@ import 'package:chef_staff/core/client.dart';
 import 'package:chef_staff/core/routing/router.dart';
 import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils/themes.dart';
+import 'package:chef_staff/recipe_comunity/data/repositories/recipe_comunity_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:chef_staff/core/dependencies.dart' show providers;
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(MyApp());
 }
 
@@ -33,6 +38,11 @@ class MyApp extends StatelessWidget {
         ),
         Provider(
           create: (context) => RecipeRepository(
+            client: context.read(),
+          ),
+        ),
+        Provider(
+          create: (context) => RecipeCommunityRepository(
             client: context.read(),
           ),
         ),

@@ -39,6 +39,6 @@ class CategoryDetailViewModel with ChangeNotifier {
   }
 
   Future<void> fetchRecipesByCategory(int categoryId) async {
-    recipes = await _recipeRepo.fetchRecipeByCategory(selected.id);
+    recipes = await _recipeRepo.fetchRecipeByCategory(categoryId);
   }
 }

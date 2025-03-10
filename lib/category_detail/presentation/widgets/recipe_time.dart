@@ -7,9 +7,11 @@ class RecipeTime extends StatelessWidget {
   const RecipeTime({
     super.key,
     required this.timeRequired,
+    required this.color
   });
 
   final int timeRequired;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class RecipeTime extends StatelessWidget {
         Text(
           "${timeRequired.toString()}min",
           style: TextStyle(
-            color: AppColors.pinkSubColor,
+            color: color,
             fontSize: 12,
           ),
         ),

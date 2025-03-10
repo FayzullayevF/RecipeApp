@@ -19,7 +19,7 @@ class RecipeItemDescription extends StatelessWidget {
       style: TextStyle(
         color: AppColors.mainBackgroundColor,
         fontFamily: "League Spartan",
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: FontWeight.w300,
         height: 1,
       ),

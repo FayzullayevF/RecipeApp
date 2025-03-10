@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:chef_staff/categories/data/models/categories_model.dart';
 import 'package:chef_staff/core/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/routing/routes.dart';
@@ -32,6 +33,7 @@ class CategoriesItem extends StatelessWidget {
       category.title,
       style: TextStyle(
         color: Colors.white,
+        height: 1
       ),
     );
     return GestureDetector(
@@ -39,7 +41,7 @@ class CategoriesItem extends StatelessWidget {
         GoRouter.of(context).go("${Routes.categoryDetail}?src=${Routes.categories}", extra: category);
       },
       child: Column(
-        spacing: category.main ? 3 : 1,
+        spacing: category.main ? 4.w : 0.5.h,
         children: [
           category.main ? title : image,
           SizedBox(

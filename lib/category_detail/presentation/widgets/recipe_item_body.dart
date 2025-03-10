@@ -20,7 +20,7 @@ class RecipeItemBody extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       width: 158.5.w,
-      height: 76.h,
+      height: 79.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(14)),
@@ -36,7 +36,7 @@ class RecipeItemBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RecipeRating(rating: recipeModel.rating),
-              RecipeTime(timeRequired: recipeModel.time)
+              RecipeTime(timeRequired: recipeModel.time, color: Colors.white,)
             ],
           )
         ],

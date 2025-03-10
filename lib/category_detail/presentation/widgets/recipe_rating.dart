@@ -7,23 +7,36 @@ class RecipeRating extends StatelessWidget {
   const RecipeRating({
     super.key,
     required this.rating,
+    this.iconColor = AppColors.pinkSubColor,
+    this.textColor = AppColors.pinkSubColor,
+    this.swap = false,
   });
 
   final num rating;
+  final bool swap;
+  final Color textColor, iconColor;
 
   @override
   Widget build(BuildContext context) {
+    final text = Text(
+      rating.toString(),
+      style: TextStyle(
+        color: textColor,
+        fontSize: 12,
+      ),
+    );
+    final icon = SvgPicture.asset(
+          "assets/icons/star.svg",
+          colorFilter: ColorFilter.mode(
+            iconColor,
+            BlendMode.srcIn,
+          ),
+        );
     return Row(
       spacing: 5,
       children: [
-        Text(
-          rating.toString(),
-          style: TextStyle(
-            color: AppColors.pinkSubColor,
-            fontSize: 12,
-          ),
-        ),
-        SvgPicture.asset("assets/icons/star.svg")
+        swap ? icon : text,
+        swap ? text : icon
       ],
     );
   }

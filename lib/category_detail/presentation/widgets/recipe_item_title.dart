@@ -17,7 +17,7 @@ class RecipeItemTitle extends StatelessWidget {
       maxLines: 1,
       style: TextStyle(
         color: AppColors.mainBackgroundColor,
-        fontSize: 12,
+        fontSize: 13,
       ),
     );
   }

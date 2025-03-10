@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/presentations/app_bar_actions.dart';
+
 class CategoryDetailView extends StatelessWidget {
   const CategoryDetailView({super.key, required this.vm, required this.src});
 
@@ -33,6 +35,25 @@ class CategoryDetailView extends StatelessWidget {
               title: vm.selected.title,
               bottom: RecipeAppBarBottom(vm: vm),
               backButtonCallBack: () => context.go(src),
+              actions: [
+                Row(
+                  children: [
+                    AppBarActions(
+                      svg: "assets/icons/notification.svg",
+                      color: AppColors.actionContainerColor,
+                      svg_Color: AppColors.pinkSubColor,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    AppBarActions(
+                      svg: "assets/icons/search.svg",
+                      color: AppColors.actionContainerColor,
+                      svg_Color: AppColors.pinkSubColor,
+                    ),
+                  ],
+                )
+              ],
             ),
             body: GridView.builder(
               padding: EdgeInsets.fromLTRB(16, 36, 12, 120),

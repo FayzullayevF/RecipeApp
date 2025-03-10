@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:chef_staff/authentication/data/models/user_model.dart';
 import 'package:chef_staff/core/exceptions/auth_exceptions.dart';
@@ -6,7 +7,7 @@ import 'package:dio/dio.dart';
 
 class ApiClient {
   final Dio dio = Dio(BaseOptions(
-      baseUrl: "http://10.10.1.91:8000/api/v1",
+      baseUrl: "http://10.10.2.138:8888/api/v1",
       validateStatus: (status) => true));
 
   Future<Map<String, dynamic>> fetchUser() async {
@@ -68,12 +69,12 @@ class ApiClient {
     return response.statusCode == 201 ? true : false;
   }
 
-  Future<dynamic> fetchRecipeById(int recipeId) async {
-    var response = await dio.get("/recipes/detail/$recipeId");
+  Future<Map<String,dynamic>> fetchRecipeById(int recipeId) async {
+    var response = await dio.get('/recipes/detail/$recipeId');
     if (response.statusCode == 200) {
-      return response.data;
+      return response.data as Map<String,dynamic>;
     } else {
-      throw Exception("Recipe is not come from backend");
+      throw Exception("$recipeId is not come from backend");
     }
   }
 
@@ -114,13 +115,25 @@ class ApiClient {
     }
   }
 
-  Future<List<dynamic>> fetchYourREcipes() async {
+  Future<List<dynamic>> fetchYourRecipes() async {
     var response = await dio.get("/recipes/list?Limit=2");
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
       return data;
     } else {
       throw Exception("recipeList limit did not come");
+    }
+  }
+
+  Future<List<dynamic>> fetchCommunity(
+      {required String? order, bool? descending })async{
+    var response = await dio.get('/recipes/community/list?Order=$order&Descending=$descending');
+    if(response.statusCode == 200){
+      List<dynamic> data = response.data;
+      print("data come");
+      return data;
+    }else{
+      throw Exception("Community did not come");
     }
   }
 }

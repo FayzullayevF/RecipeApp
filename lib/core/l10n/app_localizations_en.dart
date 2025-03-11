@@ -43,4 +43,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signUpAlready => 'Already have an account? Log in';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get forgetPassword => 'Forget password';
+
+  @override
+  String get signUpWith => 'or sign up with';
+
+  @override
+  String get noAccount => 'Don\'t have an account? Sign Up';
 }

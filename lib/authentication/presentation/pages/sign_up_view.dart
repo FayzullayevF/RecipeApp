@@ -25,12 +25,11 @@ class SignUpView extends StatelessWidget {
         final vm = context.read<SignUpViewModel>();
         return Scaffold(
           appBar: AppBar(
-            centerTitle: true,
             title: Text(
               AppLocalizations.of(context)!.signUp,
               style: TextStyle(
                 color: AppColors.nameColor,
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -114,6 +113,7 @@ class SignUpView extends StatelessWidget {
                           size: 14,
                           weight: 600),
                       RecipeElevatedButton(
+                        fontSize: 16,
                           text: AppLocalizations.of(context)!.signUp,
                           callback: () async {
                             context

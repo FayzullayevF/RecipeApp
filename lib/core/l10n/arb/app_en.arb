@@ -10,5 +10,9 @@
   "confirmPassword": "Confirm password",
   "signUpDesc": "By continuing, you Agree to ",
   "signUpTerms": "Terms of Use and Privacy Police",
-  "signUpAlready": "Already have an account? Log in"
+  "signUpAlready": "Already have an account? Log in",
+  "login":  "Login",
+  "forgetPassword": "Forget password",
+  "signUpWith": "or sign up with",
+  "noAccount": "Don't have an account? Sign Up"
 }

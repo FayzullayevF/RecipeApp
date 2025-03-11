@@ -168,6 +168,30 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Allaqachon mavjud akkaunt? Login'**
   String get signUpAlready;
+
+  /// No description provided for @login.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kirish'**
+  String get login;
+
+  /// No description provided for @forgetPassword.
+  ///
+  /// In uz, this message translates to:
+  /// **'Parolni unutdinzgizmi'**
+  String get forgetPassword;
+
+  /// No description provided for @signUpWith.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yoki bular orqali ro\'yxatdan o\'ting'**
+  String get signUpWith;
+
+  /// No description provided for @noAccount.
+  ///
+  /// In uz, this message translates to:
+  /// **'Akkaunt yo\'qmi? Ro\'yxatdan o\'tish'**
+  String get noAccount;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

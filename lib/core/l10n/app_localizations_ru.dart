@@ -43,4 +43,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get signUpAlready => 'У вас уже есть аккаунт? Войти';
+
+  @override
+  String get login => 'Входить';
+
+  @override
+  String get forgetPassword => 'Забыли пароль';
+
+  @override
+  String get signUpWith => 'Или зарегистрируйтесь через эти';
+
+  @override
+  String get noAccount => 'У вас нет учетной записи? Зарегистрироваться';
 }

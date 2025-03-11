@@ -7,6 +7,9 @@ import 'package:chef_staff/recipe_comunity/presentation/pages/recipe_comunity_vi
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../authentication/data/repositories/auth_repository.dart';
+import '../../authentication/presentation/manager/auth_view_model.dart';
+import '../../authentication/presentation/pages/login_view.dart';
 import '../../authentication/presentation/pages/sign_up_view.dart';
 import '../../categories/data/models/categories_model.dart';
 import '../../categories/presentation/manager/categories_cubit.dart';
@@ -19,7 +22,7 @@ import '../../recipe_detail/presentation/pages/recipe_detail_view.dart';
 
 final GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: '/signup',
+    initialLocation: '/login',
     routes: [
 //       GoRoute(
 //         path: "/onboarding_last",
@@ -37,16 +40,16 @@ final GoRouter router = GoRouter(
 //                 vm: ChefStaffViewModel(
 //                     repo: ChefStaffRepository(client: ApiClient())),
 //               )),
-//       GoRoute(
-//         path: "/",
-//         builder: (context, state) => LoginView(
-//           vm: LoginViewModel(
-//             repo: AuthRepository(
-//               client: ApiClient(),
-//             ),
-//           ),
-//         ),
-//       ),
+      GoRoute(
+        path: "/login",
+        builder: (context, state) => LoginView(
+          vm: LoginViewModel(
+            repo: AuthRepository(
+              client: ApiClient(),
+            ),
+          ),
+        ),
+      ),
       GoRoute(
         path: Routes.categories,
         builder: (context, state) => BlocProvider(

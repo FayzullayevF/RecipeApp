@@ -5,9 +5,12 @@ import 'package:chef_staff/core/presentations/recipe_eleveted_button.dart';
 import 'package:chef_staff/core/sizes.dart';
 import 'package:chef_staff/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/l10n/app_localizations.dart';
+import '../../../core/presentations/localization_view_model.dart';
 import '../widgets/page_text.dart';
 
 class LoginView extends StatelessWidget {
@@ -24,15 +27,28 @@ class LoginView extends StatelessWidget {
       listenable: vm,
       builder: (context, child) => Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           title: Text(
-            "Login",
+            AppLocalizations.of(context)!.login,
             style: TextStyle(
               color: AppColors.nameColor,
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
           ),
+          actions: [
+            TextButton(
+                onPressed: (){
+                  context.read<LocalizationViewModel>().currentLocale = Locale("uz");
+                },
+                child:  Text("uz")),
+            TextButton(onPressed: () {
+              context.read<LocalizationViewModel>().currentLocale = Locale("ru");
+            }, child: Text("ru")),
+            TextButton(onPressed: () {
+              context.read<LocalizationViewModel>().currentLocale = Locale("en");
+            }, child: Text("en ")),
+
+          ],
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSizes.padding36),
@@ -68,14 +84,14 @@ class login_form_field extends StatelessWidget {
             height: 70,
           ),
           RecipeTextFormField(
-            title: "Login",
+            title: AppLocalizations.of(context)!.login,
             hintText: "example@gmail.com",
             validator: (value) => null,
             controller: vm.loginController,
           ),
           RecipePasswordFormField(
             controller: vm.passwordController,
-            title: "Password",
+            title: AppLocalizations.of(context)!.password,
             validator: (value) => null,
           ),
           if (vm.hasError)
@@ -90,7 +106,7 @@ class login_form_field extends StatelessWidget {
             height: 40,
           ),
           RecipeElevatedButton(
-              text: "Login",
+              text: AppLocalizations.of(context)!.login,
               callback: () async {
                 if (vm.formKey.currentState!.validate()) {
                   if (await vm.login() && context.mounted) {
@@ -104,7 +120,8 @@ class login_form_field extends StatelessWidget {
             height: 15,
           ),
           RecipeElevatedButton(
-              text: "Sign Up",
+            fontSize: 16,
+              text: AppLocalizations.of(context)!.signUp,
               callback: () {
                 context.go('/signup');
               }),
@@ -113,7 +130,7 @@ class login_form_field extends StatelessWidget {
           ),
           PageText(
             size: 16,
-            title: "Forgot Password?",
+            title: AppLocalizations.of(context)!.forgetPassword,
             weight: 600,
           ),
           SizedBox(
@@ -121,7 +138,7 @@ class login_form_field extends StatelessWidget {
           ),
           PageText(
             size: 13,
-            title: "or sign up with",
+            title: AppLocalizations.of(context)!.signUpWith,
             weight: 300,
           ),
           SizedBox(
@@ -145,7 +162,7 @@ class login_form_field extends StatelessWidget {
           ),
           PageText(
             size: 13,
-            title: "Don’t have an account? Sign Up",
+            title: AppLocalizations.of(context)!.noAccount,
             weight: 300,
           ),
         ],

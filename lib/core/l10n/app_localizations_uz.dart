@@ -43,4 +43,16 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get signUpAlready => 'Allaqachon mavjud akkaunt? Login';
+
+  @override
+  String get login => 'Kirish';
+
+  @override
+  String get forgetPassword => 'Parolni unutdinzgizmi';
+
+  @override
+  String get signUpWith => 'Yoki bular orqali ro\'yxatdan o\'ting';
+
+  @override
+  String get noAccount => 'Akkaunt yo\'qmi? Ro\'yxatdan o\'tish';
 }

@@ -7,6 +7,7 @@ import 'package:chef_staff/recipe_comunity/presentation/pages/recipe_comunity_vi
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../authentication/presentation/pages/sign_up_view.dart';
 import '../../categories/data/models/categories_model.dart';
 import '../../categories/presentation/manager/categories_cubit.dart';
 import '../../categories/presentation/pages/categories_view.dart';
@@ -18,7 +19,7 @@ import '../../recipe_detail/presentation/pages/recipe_detail_view.dart';
 
 final GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: '/community',
+    initialLocation: '/signup',
     routes: [
 //       GoRoute(
 //         path: "/onboarding_last",
@@ -55,7 +56,7 @@ final GoRouter router = GoRouter(
           child: CategoriesView(),
         ),
       ),
-//       GoRoute(path: "/signup", builder: (context, state) => SignUpView()),
+      GoRoute(path: "/signup", builder: (context, state) => SignUpView()),
 //       GoRoute(
 //           path: "/profileimage",
 //           builder: (context, satate) => ProfileImagePicker()),

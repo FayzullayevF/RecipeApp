@@ -1,0 +1,14 @@
+{
+  "signUp": "Зарегистрироваться",
+  "firstName": "Имя",
+  "lastName": "Фамилия",
+  "username": "Имя пользователя",
+  "email": "Электронная почта",
+  "mobileNumber": "Номер телефона",
+  "dateOfBirth": "Дата рождения",
+  "password": "Пароль",
+  "confirmPassword": "Подтвердите пароль",
+  "signUpDesc": "Продолжая, вы соглашаетесь с",
+  "signUpTerms": "Terms of Use and Privacy Police",
+  "signUpAlready": "У вас уже есть аккаунт? Войти"
+}

@@ -5,6 +5,8 @@ import 'package:chef_staff/authentication/presentation/widgets/recipe_date_of_bi
 import 'package:chef_staff/authentication/presentation/widgets/recipe_password_form_field.dart';
 import 'package:chef_staff/authentication/presentation/widgets/recipe_text_form_field.dart';
 import 'package:chef_staff/core/client.dart';
+import 'package:chef_staff/core/l10n/app_localizations.dart';
+import 'package:chef_staff/core/presentations/localization_view_model.dart';
 import 'package:chef_staff/core/presentations/recipe_eleveted_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,13 +27,27 @@ class SignUpView extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              "Sign Up",
+              AppLocalizations.of(context)!.signUp,
               style: TextStyle(
                 color: AppColors.nameColor,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
             ),
+            actions: [
+              TextButton(
+                onPressed: (){
+                  context.read<LocalizationViewModel>().currentLocale = Locale("uz");
+                },
+                child:  Text("uz")),
+              TextButton(onPressed: () {
+                context.read<LocalizationViewModel>().currentLocale = Locale("ru");
+              }, child: Text("ru")),
+              TextButton(onPressed: () {
+                context.read<LocalizationViewModel>().currentLocale = Locale("en");
+              }, child: Text("en ")),
+
+            ],
           ),
           body: ListView(
               padding: EdgeInsets.symmetric(horizontal: AppSizes.padding36),
@@ -46,39 +62,40 @@ class SignUpView extends StatelessWidget {
                         height: 30,
                       ),
                       RecipeTextFormField(
-                          hintText: "Firts Name",
+                          hintText: AppLocalizations.of(context)!.firstName,
                           validator: (value) => null,
                           controller: vm.firstNameController,
-                          title: "First Name"),
+                          title: AppLocalizations.of(context)!.firstName,
+                ),
                       RecipeTextFormField(
-                          hintText: "Last Name",
+                          hintText: AppLocalizations.of(context)!.lastName,
                           validator: (value) => null,
                           controller: vm.lastNameController,
-                          title: "Last Name"),
+                          title: AppLocalizations.of(context)!.lastName),
                       RecipeTextFormField(
-                          hintText: "UserName",
+                          hintText: AppLocalizations.of(context)!.username,
                           validator: (value) => null,
                           controller: vm.userNameContorller,
-                          title: "Username"),
+                          title: AppLocalizations.of(context)!.username),
                       RecipeTextFormField(
                           hintText: "example@gmail.com",
                           validator: (value) => null,
                           controller: vm.emailController,
-                          title: "Email"),
+                          title: AppLocalizations.of(context)!.email),
                       RecipeTextFormField(
                           hintText: "+123 456 789",
                           validator: (value) => null,
                           controller: vm.phoneNumberController,
-                          title: "Mobile Number"),
+                          title: AppLocalizations.of(context)!.mobileNumber),
                       RecipeDateOfBirthField(),
                       RecipePasswordFormField(
                         controller: vm.passwordController,
-                        title: "Password",
+                        title: AppLocalizations.of(context)!.password,
                         validator: (value) => null,
                       ),
                       RecipePasswordFormField(
                         controller: vm.confirmPasswordController,
-                        title: "Confirm Password",
+                        title: AppLocalizations.of(context)!.confirmPassword,
                         validator: (value) {
                           if (vm.passwordController.text !=
                               vm.confirmPasswordController.text) {
@@ -89,15 +106,15 @@ class SignUpView extends StatelessWidget {
                         },
                       ),
                       PageText(
-                          title: "By continuing, you agree to",
+                          title: AppLocalizations.of(context)!.signUpDesc,
                           size: 14,
                           weight: 400),
                       PageText(
-                          title: " Terms of Use and Privacy Policy.",
+                          title: AppLocalizations.of(context)!.signUpTerms,
                           size: 14,
                           weight: 600),
                       RecipeElevatedButton(
-                          text: "Sign Up",
+                          text: AppLocalizations.of(context)!.signUp,
                           callback: () async {
                             context
                                 .read<SignUpViewModel>()
@@ -131,7 +148,7 @@ class SignUpView extends StatelessWidget {
                             }
                           }),
                       PageText(
-                          title: "Already have an account?  Log In",
+                          title: AppLocalizations.of(context)!.signUpAlready,
                           size: 13,
                           weight: 300),
                       SizedBox(

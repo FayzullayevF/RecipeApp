@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 
 class ApiClient {
   final Dio dio = Dio(BaseOptions(
-      baseUrl: "http://192.168.0.101:8888/api/v1",
+      baseUrl: "http://192.168.9.69:8888/api/v1",
       validateStatus: (status) => true));
 
   Future<Map<String, dynamic>> fetchUser() async {

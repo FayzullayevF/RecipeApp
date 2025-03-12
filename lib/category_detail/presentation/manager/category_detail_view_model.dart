@@ -2,43 +2,74 @@ import 'package:chef_staff/categories/data/models/categories_model.dart';
 import 'package:chef_staff/categories/data/repositories/categories_repository.dart';
 import 'package:chef_staff/category_detail/data/model/recipe_model.dart';
 import 'package:chef_staff/category_detail/data/repositories/recipe_repository.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CategoryDetailViewModel with ChangeNotifier {
-  CategoryDetailViewModel({
+class CategoryDetailEvent {}
+
+class CategoryDetailLoading extends CategoryDetailEvent {}
+
+enum CategoryDetailStatus { idle, loading, error }
+
+class CategoryDetailState extends Equatable {
+  const CategoryDetailState({
+    required this.categories,
+    required this.recipes,
+    required this.status,
+    required this.selected,
+  });
+
+  final List<CategoriesModel> categories;
+  final List<RecipeModel> recipes;
+  final CategoryDetailStatus status;
+  final CategoriesModel? selected;
+
+@override
+  // TODO: implement props
+  List<Object?> get props => [categories, recipes, status, selected];
+}
+
+class CategoryDetailBloc
+    extends Bloc<CategoryDetailEvent, CategoryDetailState> {
+  CategoryDetailBloc({
     required CategoriesRepository catRepo,
     required RecipeRepository recipeRepo,
-    required CategoriesModel selected,
-  })  : _catRepo = catRepo,
+    required int selectedId,
+  })
+      : _catRepo = catRepo,
         _recipeRepo = recipeRepo,
-        _selected = selected;
+        super(
+        CategoryDetailState(
+          categories: [],
+          recipes: [],
+          status: CategoryDetailStatus.loading,
+          selected: null,
+        ),
+      ) {
+    on<CategoryDetailLoading>((event, emit) async {
+      emit(
+        CategoryDetailState(
+          categories: [],
+          recipes: [],
+          status: CategoryDetailStatus.loading,
+          selected: null,
+        ),
+      );
+      final categories = await _catRepo.fetchCategories();
+      emit(
+        CategoryDetailState(
+          categories: categories,
+          recipes: await _recipeRepo.fetchRecipeByCategory(selectedId),
+          status: CategoryDetailStatus.idle,
+          selected: categories.singleWhere((category) =>
+          category.id == selectedId),
+        ),
+      );
+    });
+  }
+
   final CategoriesRepository _catRepo;
   final RecipeRepository _recipeRepo;
 
-  List<CategoriesModel> categories = [];
-  List<RecipeModel> recipes = [];
-  bool isLoading = true;
-
-  late CategoriesModel _selected;
-
-  CategoriesModel get selected => _selected;
-
-  set selected(CategoriesModel model) {
-    _selected = model;
-    notifyListeners();
-    fetchRecipesByCategory(_selected.id);
-  }
-
-  Future<void> load() async {
-    isLoading = true;
-    notifyListeners();
-    categories = await _catRepo.fetchCategories();
-    recipes = await _recipeRepo.fetchRecipeByCategory(selected.id);
-    isLoading = false;
-    notifyListeners();
-  }
-
-  Future<void> fetchRecipesByCategory(int categoryId) async {
-    recipes = await _recipeRepo.fetchRecipeByCategory(categoryId);
-  }
 }

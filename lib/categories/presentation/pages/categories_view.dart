@@ -11,13 +11,15 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: context.read<CategoriesCubit>().load,
-      child: Scaffold(
-        extendBody:  true,
-        backgroundColor: AppColors.mainBackgroundColor,
-        appBar: RecipeAppbar(title: "Categories",),
-        body: CategoryPageItem(),
+    return BlocBuilder(
+      builder:(context, state)=> RefreshIndicator(
+        onRefresh: () async => context.read<CategoriesBloc>().add(CategoriesLoading()),
+        child: Scaffold(
+          extendBody:  true,
+          backgroundColor: AppColors.mainBackgroundColor,
+          appBar: RecipeAppbar(title: "Categories",),
+          body: CategoryPageItem(),
+        ),
       ),
     );
   }
@@ -27,7 +29,7 @@ class CategoryPageItem extends StatelessWidget {
   const CategoryPageItem({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesCubit,CategoriesState>(
+    return BlocBuilder<CategoriesBloc,CategoriesState>(
       builder:(context, state)=> ListView(
         shrinkWrap: true,
         padding: EdgeInsets.fromLTRB(38.w, 20.h, 38.w, 100.h),

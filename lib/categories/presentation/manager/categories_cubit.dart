@@ -5,8 +5,12 @@ import '../../data/models/categories_model.dart';
 
 part 'categories_state.dart';
 
-class CategoriesCubit extends Cubit<CategoriesState> {
-  CategoriesCubit({required CategoriesRepository repo})
+class CategoriesEvent{}
+
+class CategoriesLoading extends CategoriesEvent{}
+
+class CategoriesBloc extends Bloc<CategoriesEvent,CategoriesState> {
+  CategoriesBloc({required CategoriesRepository repo})
       : _repo = repo,
         super(
           CategoriesState(
@@ -14,12 +18,13 @@ class CategoriesCubit extends Cubit<CategoriesState> {
               mainCategory: null,
               status: CategoriesStatus.loading),
         ) {
-    load();
+    on<CategoriesLoading>(load);
+    add(CategoriesLoading());
   }
 
   final CategoriesRepository _repo;
 
-  Future<void> load() async {
+  Future<void> load(CategoriesLoading event, Emitter<CategoriesState> emit) async {
     final allCategories = await _repo.fetchCategories();
     emit(
       CategoriesState(

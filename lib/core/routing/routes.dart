@@ -8,5 +8,6 @@ class Routes {
   static const recipeDetail = "/recipe-detail";
   static const categoryDetail = "/category-detail";
   static const community = "/community";
+  static const review = "/review";
 
 }
